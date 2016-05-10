@@ -15,8 +15,10 @@
     "autoload": {
         "psr-4": {"Glory\\Bundle\\ContentBundle\\": ""}
     },
+    "minimum-stability": "dev",
     "require": {
-        "symfony/symfony": "~2.3"
+        "symfony/symfony": "~2.3",
+        "foreverglory/category-bundle": "dev-master"
     },
     "require-dev": {
     }
