@@ -1,106 +1,115 @@
 <?php
 
+/*
+ * (c) ForeverGlory <http://foreverglory.me/>
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ */
+
 namespace Glory\Bundle\ContentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Glory\Bundle\ContentBundle\Model\Content as BaseContent;
+use Glory\Bundle\CategoryBundle\Entity\Category;
 use Symfony\Component\Security\Core\User\UserInterface as User;
 
 /**
  * Content
  *
- * @ORM\Table(name="content")
- * @ORM\Entity
+ * @ORM\MappedSuperclass
  */
-class Content
+class Content extends BaseContent
 {
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * @var string
      *
      * @ORM\Column(name="thumb", type="string", length=255, nullable=false)
      */
-    private $thumb;
+    protected $thumb;
 
     /**
      * @var string
      *
      * @ORM\Column(name="body", type="text", length=65535, nullable=true)
      */
-    private $body;
+    protected $body;
+
+    /**
+     * @var 
+     * 
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    protected $category;
 
     /**
      * @var 
      */
-    private $category;
-
-    /**
-     * @var 
-     */
-    private $tags;
+    protected $tags;
 
     /**
      * @var string
      *
      * @ORM\Column(name="source", type="string", length=1024, nullable=true)
      */
-    private $source = '';
+    protected $source = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=32, nullable=false)
      */
-    private $status = 'unpublished';
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    private $user;
+    protected $status = 'unpublished';
 
     /**
      * @var integer
      *
      * @ORM\Column(name="createdTime", type="integer")
      */
-    private $createdTime = '0';
+    protected $createdTime = '0';
 
     /**
      * @var integer
      *
      * @ORM\Column(name="published_time", type="integer", nullable=true)
      */
-    private $publishedTime = '0';
+    protected $publishedTime = '0';
 
     /**
      * @var integer
      *
      * @ORM\Column(name="updatedTime", type="integer", nullable=true)
      */
-    private $updatedTime = '0';
-    
+    protected $updatedTime = '0';
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
 
 }
