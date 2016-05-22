@@ -3,7 +3,7 @@
 /*
  * This file is part of the current project.
  * 
- * (c) ForeverGlory <http://foreverglory.me/>
+ * (c) ForeverGlory <https://foreverglory.me/>
  * 
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,11 +16,11 @@ use Symfony\Component\Form\FormBuilder;
 use Glory\Bundle\CategoryBundle\Form\Type\CategoryType;
 
 /**
- * Description of ContentType
+ * Description of ContentFormType
  *
  * @author ForeverGlory <foreverglory@qq.com>
  */
-class ContentType extends AbstractType
+class ContentFormType extends AbstractType
 {
 
     public function buildForm(FormBuilder $builder, array $options)
@@ -34,7 +34,7 @@ class ContentType extends AbstractType
 
     public function getName()
     {
-        return 'content';
+        return 'glory_content_form';
     }
 
 }
