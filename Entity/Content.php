@@ -1,9 +1,12 @@
 <?php
 
 /*
+ * This file is part of the current project.
+ * 
  * (c) ForeverGlory <http://foreverglory.me/>
  * 
  * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Glory\Bundle\ContentBundle\Entity;
@@ -40,7 +43,7 @@ class Content extends BaseContent
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     protected $description;
 
@@ -74,7 +77,7 @@ class Content extends BaseContent
     /**
      * @var string
      *
-     * @ORM\Column(name="source", type="string", length=1024, nullable=true)
+     * @ORM\Column(name="source", type="string", nullable=true)
      */
     protected $source = '';
 
@@ -88,7 +91,7 @@ class Content extends BaseContent
     /**
      * @var integer
      *
-     * @ORM\Column(name="createdTime", type="integer")
+     * @ORM\Column(name="created_time", type="integer")
      */
     protected $createdTime = '0';
 
@@ -102,11 +105,15 @@ class Content extends BaseContent
     /**
      * @var integer
      *
-     * @ORM\Column(name="updatedTime", type="integer", nullable=true)
+     * @ORM\Column(name="updated_time", type="integer", nullable=true)
      */
     protected $updatedTime = '0';
 
     /**
+     * @var user
+     * 
+     * Must UserInterface Entity
+     * 
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */

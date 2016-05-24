@@ -1,20 +1,24 @@
 <?php
 
 /*
+ * This file is part of the current project.
+ * 
  * (c) ForeverGlory <http://foreverglory.me/>
  * 
  * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Glory\Bundle\ContentBundle\Model;
 
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Glory\Bundle\CategoryBundle\Model\CategoryInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Content
  */
-class Content
+class Content implements ContentInterface
 {
 
     /**
@@ -24,6 +28,7 @@ class Content
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     protected $title;
 
@@ -31,6 +36,11 @@ class Content
      * @var string
      */
     protected $description;
+    
+    /**
+     * @var
+     */
+    protected $thumb;
 
     /**
      * @var string
@@ -45,7 +55,7 @@ class Content
     /**
      * @var 
      */
-    protected $tags;
+    protected $tags = array();
 
     /**
      * @var string
@@ -73,8 +83,7 @@ class Content
     protected $updatedTime;
 
     /**
-     * @ORM\ManyToOne(targetEntity="UserInterface")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @var UserInterface 
      */
     protected $user;
 
@@ -110,6 +119,17 @@ class Content
     {
         return $this->description;
     }
+    
+    public function setThumb($thumb)
+    {
+        $this->thumb = $thumb;
+        return $this;
+    }
+
+    public function getThumb()
+    {
+        return $this->thumb;
+    }
 
     public function setBody($body)
     {
@@ -122,7 +142,7 @@ class Content
         return $this->body;
     }
 
-    public function setCategory($category)
+    public function setCategory(CategoryInterface $category)
     {
         $this->category = $category;
         return $this;
@@ -135,12 +155,18 @@ class Content
 
     public function addTag($tag)
     {
-        $this->tags[] = $tag;
+        $this->tags[$tag] = $tag;
         return $this;
+    }
+
+    public function hasTag($tag)
+    {
+        return array_key_exists($tag, $this->getTags());
     }
 
     public function removeTag($tag)
     {
+        unset($this->tags[$tag]);
         return $this;
     }
 
