@@ -19,7 +19,8 @@
     "require": {
         "symfony/symfony": "~2.3",
         "egeloen/ckeditor-bundle": "~4.0",
-        "foreverglory/category-bundle": "dev-master"
+        "foreverglory/category-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "~2.5"
     },
     "require-dev": {
     }
