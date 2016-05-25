@@ -13,6 +13,7 @@ namespace Glory\Bundle\ContentBundle\Model;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Glory\Bundle\CategoryBundle\Model\CategoryInterface;
+use Glory\Bundle\ContentBundle\Model\TagInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -36,7 +37,7 @@ class Content implements ContentInterface
      * @var string
      */
     protected $description;
-    
+
     /**
      * @var
      */
@@ -119,7 +120,7 @@ class Content implements ContentInterface
     {
         return $this->description;
     }
-    
+
     public function setThumb($thumb)
     {
         $this->thumb = $thumb;
@@ -153,9 +154,9 @@ class Content implements ContentInterface
         return $this->category;
     }
 
-    public function addTag($tag)
+    public function addTag(TagInterface $tag)
     {
-        $this->tags[$tag] = $tag;
+        $this->tags[$tag->getName()] = $tag;
         return $this;
     }
 

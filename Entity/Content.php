@@ -72,6 +72,15 @@ class Content extends BaseContent
     /**
      * @var 
      */
+
+    /**
+     * @abstract 继承需要重写 targetEntity
+     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\JoinTable(name="content_tag_relation",
+     *      joinColumns={@ORM\JoinColumn(name="content_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     * )
+     */
     protected $tags;
 
     /**
