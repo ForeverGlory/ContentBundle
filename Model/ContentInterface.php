@@ -10,13 +10,18 @@
  */
 
 namespace Glory\Bundle\ContentBundle\Model;
+
+use Glory\Bundle\CategoryBundle\Model\CategoryInterface;
 use Glory\Bundle\ContentBundle\Model\TagInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  *
  * @author ForeverGlory <foreverglory@qq.com>
  */
 interface ContentInterface
 {
+
     public function setId($id);
 
     public function getId();
@@ -28,7 +33,7 @@ interface ContentInterface
     public function setDescription($description);
 
     public function getDescription();
-    
+
     public function setThumb($thumb);
 
     public function getThumb();
