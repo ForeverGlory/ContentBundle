@@ -12,8 +12,8 @@
 namespace Glory\Bundle\ContentBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
-use Glory\Bundle\CategoryBundle\Form\Type\CategoryType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 /**
@@ -24,13 +24,11 @@ use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 class ContentFormType extends AbstractType
 {
 
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
                 ->add('title')
-                ->add('category', CategoryType::class)
                 ->add('body', CKEditorType::class)
-//                ->add('tags')
         ;
     }
 

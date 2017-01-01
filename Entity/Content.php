@@ -13,13 +13,14 @@ namespace Glory\Bundle\ContentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Glory\Bundle\ContentBundle\Model\Content as BaseContent;
-use Glory\Bundle\CategoryBundle\Entity\Category;
-use Symfony\Component\Security\Core\User\UserInterface as User;
 
 /**
- * Content
+ * Description of Content
+ * 
+ * @ORM\Entity
+ * @ORM\Table("content")
  *
- * @ORM\MappedSuperclass
+ * @author ForeverGlory <foreverglory@qq.com>
  */
 class Content extends BaseContent
 {
@@ -50,7 +51,7 @@ class Content extends BaseContent
     /**
      * @var string
      *
-     * @ORM\Column(name="thumb", type="string", length=255, nullable=false)
+     * @ORM\Column(name="thumb", type="string", length=255, nullable=true)
      */
     protected $thumb;
 
@@ -64,17 +65,12 @@ class Content extends BaseContent
     /**
      * @var 
      * 
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="Glory\Bundle\CategoryBundle\Entity\Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $category;
 
     /**
-     * @var 
-     */
-
-    /**
-     * @abstract 继承需要重写 targetEntity
      * @ORM\ManyToMany(targetEntity="Tag")
      * @ORM\JoinTable(name="content_tag_relation",
      *      joinColumns={@ORM\JoinColumn(name="content_id", referencedColumnName="id")},
@@ -119,11 +115,18 @@ class Content extends BaseContent
     protected $updatedTime = '0';
 
     /**
+     * @var string
+     *  
+     * @ORM\Column(name="type", type="string")
+     */
+    protected $type;
+
+    /**
      * @var user
      * 
      * Must UserInterface Entity
      * 
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Symfony\Component\Security\Core\User\UserInterface")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;

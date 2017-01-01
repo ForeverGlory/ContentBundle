@@ -1,3 +1,19 @@
-glory_content_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: GloryContentBundle:Default:index }
+glory_content_show:
+    path: /content/{id}
+    defaults: { _controller: GloryContentBundle:Default:show }
+
+glory_content_admin:
+    path: /admin/content
+    defaults: { _controller: GloryContentBundle:Admin:list }
+
+glory_content_admin_create:
+    path: /admin/content/create
+    defaults: { _controller: GloryContentBundle:Admin:create }
+
+glory_content_admin_edit:
+    path: /admin/content/{id}/edit
+    defaults: { _controller: GloryContentBundle:Admin:edit }
+
+glory_content_admin_delete:
+    path: /admin/content/{id}/delete
+    defaults: { _controller: GloryContentBundle:Admin:delete }

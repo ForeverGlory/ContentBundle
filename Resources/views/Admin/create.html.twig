@@ -1,0 +1,7 @@
+{% extends "GloryContentBundle:Admin:layout.html.twig" %}
+
+{% block content %}
+    <form action="{{path('glory_content_admin_create')}}" method="post">
+        {{form_widget(form)}}
+    </form>
+{% endblock %}

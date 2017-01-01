@@ -195,13 +195,13 @@ class Content implements ContentInterface
 
     public function setCreatedTime($createTime = 0)
     {
-        $this->createTime = $createTime? : time();
+        $this->createdTime = $createTime? : time();
         return $this;
     }
 
     public function getCreatedTime()
     {
-        return $this->createTime;
+        return $this->createdTime;
     }
 
     public function setPublishedTime($publishedTime = 0)
@@ -224,6 +224,17 @@ class Content implements ContentInterface
     public function getUpdatedTime()
     {
         return $this->updatedTime;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     public function setUser(UserInterface $user)

@@ -18,24 +18,21 @@ use Glory\Bundle\ContentBundle\Entity\Content;
 /**
  * Description of Tag
  *
- * @ORM\MappedSuperclass
+ * @ORM\Entity
+ * @ORM\Table("content_tag")
+ * 
  * @author ForeverGlory <foreverglory@qq.com>
  */
 class Tag extends Category
 {
-
-    /**
-     * Parent
-     *
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     */
-    protected $parent = null;
-
     /**
      * Contents
-     * @ORM\OneToMany(targetEntity="Content", inversedBy="tags")
+     * @ORM\ManyToMany(targetEntity="Content", inversedBy="tags")
+     * @ORM\JoinTable(name="content_tags_relation",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
      */
-    protected $contents = array();
+    //protected $contents = array();
 
 }
