@@ -1,8 +1,7 @@
 services:
-    glory_content.content_manager:
-        class: Glory\Bundle\ContentBundle\Model\ContentManager
-        arguments: [ @service_container ]
-    glory_content.form.content_form:
-        class: Glory\Bundle\ContentBundle\Form\Type\ContentFormType
-        tags: 
-            - { name:form.type, alias:glory_content_form }
+    glory.content.form.type:
+        class: Glory\Bundle\ContentBundle\Form\Type\ContentType
+        tags:
+            - { name: form.type }
+        arguments: ['%glory.model.content.class%']
+

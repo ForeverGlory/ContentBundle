@@ -11,15 +11,16 @@
 
 namespace Glory\Bundle\ContentBundle\Model;
 
-use Glory\Bundle\CategoryBundle\Model\CategoryInterface;
+//use Glory\Bundle\CategoryBundle\Model\CategoryInterface;
 use Glory\Bundle\ContentBundle\Model\TagInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
 /**
  *
  * @author ForeverGlory <foreverglory@qq.com>
  */
-interface ContentInterface
+interface ContentInterface extends ResourceInterface
 {
 
     public function setId($id);
@@ -42,7 +43,7 @@ interface ContentInterface
 
     public function getBody();
 
-    public function setCategory(CategoryInterface $category);
+//    public function setCategory(CategoryInterface $category);
 
     public function getCategory();
 

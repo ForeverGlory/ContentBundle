@@ -1,0 +1,45 @@
+{% block content %}
+    <div class="box" id="content-list">
+        <div class="box-header">
+            <h3 class="box-title">文章列表</h3>
+            <div class="box-tools">
+                {{knp_pagination_filter(pagination,{'content.title':'Title','content.body':'Body'})}}
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table">
+                <tr>
+                    <th>{{ knp_pagination_sortable(pagination, 'Id', 'content.id') }}</th>
+                    <th{% if pagination.isSorted('content.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'content.title') }}</th>
+                    <th{% if pagination.isSorted('content.createdTime') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Created', 'content.createdTime') }}</th>
+                    <th{% if pagination.isSorted('content.publishedTime') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Published', 'content.publishedTime') }}</th>
+                    <th>Status</th>
+                    <th>Operate</th>
+                </tr>
+                {% for content in pagination %}
+                    <tr>
+                        <td>{{content.id}}</td>
+                        <td><a href="{{path('glory_content_show', {'id': content.id})}}" target="_blank">{{content.title}}</a></td>
+                        <td>
+                            {{content.createdTime|date('Y-m-d H:i:s')}}
+                        </td>
+                        <td>
+                            {{content.publishedTime|date('Y-m-d H:i:s')}}
+                        </td>
+                        <td>{{content.status}}</td>
+                        <td>
+                            <a href="{{ path('glory_content_admin_edit', {'id': content.id}) }}">编辑</a>
+                            <a href="{{ path('glory_content_admin_delete', {'id': content.id}) }}">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="box-footer clearfix">
+            <a href="{{path('glory_content_admin_create')}}" class="btn btn-primary">创建文章</a>
+            <div class="no-margin pull-right">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

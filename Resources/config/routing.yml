@@ -1,19 +1,13 @@
-glory_content_show:
-    path: /content/{id}
-    defaults: { _controller: GloryContentBundle:Default:show }
+#glory_content_show:
+#    path: /content/{id}
+#    defaults: { _controller: GloryContentBundle:Default:show }
 
-glory_content_admin:
-    path: /admin/content
-    defaults: { _controller: GloryContentBundle:Admin:list }
+glory_admin_content:
+    resource: |
+        alias: glory.content
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        grid: glory_content
+    type: sylius.resource
+    prefix: /admin
 
-glory_content_admin_create:
-    path: /admin/content/create
-    defaults: { _controller: GloryContentBundle:Admin:create }
-
-glory_content_admin_edit:
-    path: /admin/content/{id}/edit
-    defaults: { _controller: GloryContentBundle:Admin:edit }
-
-glory_content_admin_delete:
-    path: /admin/content/{id}/delete
-    defaults: { _controller: GloryContentBundle:Admin:delete }

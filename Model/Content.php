@@ -12,15 +12,23 @@
 namespace Glory\Bundle\ContentBundle\Model;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Glory\Bundle\CategoryBundle\Model\CategoryInterface;
+//use Glory\Bundle\CategoryBundle\Model\CategoryInterface;
 use Glory\Bundle\ContentBundle\Model\TagInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Sylius\Component\Resource\Model\{
+    TimestampableTrait,
+    ToggleableTrait,
+    TranslatableTrait
+};
 
 /**
  * Content
  */
 class Content implements ContentInterface
 {
+
+    use TimestampableTrait,
+        ToggleableTrait;
 
     /**
      * @var integer
@@ -195,7 +203,7 @@ class Content implements ContentInterface
 
     public function setCreatedTime($createTime = 0)
     {
-        $this->createdTime = $createTime? : time();
+        $this->createdTime = $createTime ?: time();
         return $this;
     }
 
@@ -206,7 +214,7 @@ class Content implements ContentInterface
 
     public function setPublishedTime($publishedTime = 0)
     {
-        $this->publishedTime = $publishedTime? : time();
+        $this->publishedTime = $publishedTime ?: time();
         return $this;
     }
 
@@ -217,7 +225,7 @@ class Content implements ContentInterface
 
     public function setUpdatedTime($updatedTime = 0)
     {
-        $this->updatedTime = $updatedTime? : time();
+        $this->updatedTime = $updatedTime ?: time();
         return $this;
     }
 
@@ -246,6 +254,11 @@ class Content implements ContentInterface
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function setEnabled()
+    {
+        
     }
 
 }
